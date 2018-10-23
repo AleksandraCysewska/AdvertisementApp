@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="home-content-background">
+            <div class="div-content-logo">
+                <img class="content-logo" src="../../content/images/logo-jhipster.png" />
+            </div>
+
+            <div class="div-align-middle">
+                <h1 class="title-align-middle">NewsBoard Application</h1>
+            </div>
+        </div>
+
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success" *ngSwitchCase="true">
+                <span *ngIf="account"
+                   > You are logged in as user "{{account.login}}". </span>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding-top: 20px;">
+            <h5>NewsBoard is an application which allows students to control theirs current exams progress. </h5>
+            <h5>Users can check incoming exams or verified completed exam's degrees. </h5>
+            <h5>Lectures can create, modify or remove advertisement about an exams and projects.</h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+
+.hipster {
+    display: inline-block;
+    width: 347px;
+    height: 497px;
+    background: url("../../content/images/hipster.png") no-repeat center top;
+    background-size: contain;
+}
+
+.home-content-background {
+    height: 100px;
+    position: relative;
+    background: url("../../content/images/banner-pattern2.jpg");
+
+}
+
+.div-align-middle {
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+}
+
+.title-align-middle {
+    font-weight: bold;
+}
+
+.div-content-logo {
+    width: 35%;
+}
+
+.content-logo {
+    float: right;
+    width: 70px;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+    .hipster {
+        background: url("../../content/images/hipster2x.png") no-repeat center top;
+        background-size: contain;
+    }
+}
+
+

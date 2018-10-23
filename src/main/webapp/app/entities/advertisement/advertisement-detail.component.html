@@ -1,0 +1,65 @@
+
+<div *ngIf="advertisement">
+    <h2><span>Advertisement</span> {{advertisement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{advertisement.title}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{advertisement.description}}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{advertisement.date}}</span>
+        </dd>
+        <dt><span>Author</span></dt>
+        <dd>
+            <span>{{advertisement.author}}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <span>{{advertisement.category}}</span>
+        </dd>
+        <dt><span>College</span></dt>
+        <dd>
+            <span>{{advertisement.college}}</span>
+        </dd>
+        <dt><span>Department</span></dt>
+        <dd>
+            <span>{{advertisement.department}}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{advertisement.email}}</span>
+        </dd>
+        <dt><span>Link</span></dt>
+        <dd>
+            <span>{{advertisement.link}}</span>
+        </dd>
+        <dt><span>Picture</span></dt>
+        <dd>
+            <div *ngIf="advertisement.picture">
+                <a (click)="openFile(advertisement.pictureContentType, advertisement.picture)">open</a>
+                {{advertisement.pictureContentType}}, {{byteSize(advertisement.picture)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'advertisement/'+ advertisement.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

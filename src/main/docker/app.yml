@@ -1,0 +1,14 @@
+version: '2'
+services:
+    advertisementapp-app:
+        image: advertisementapp
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://advertisementapp-mysql:3306/advertisementapp?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    advertisementapp-mysql:
+        extends:
+            file: mysql.yml
+            service: advertisementapp-mysql

@@ -1,0 +1,132 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAdvertisementLabel">Create or edit a Advertisement</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!advertisement.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="advertisement.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="advertisement.title" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="advertisement.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_date">Date</label>
+            <input type="text" class="form-control" name="date" id="field_date"
+                [(ngModel)]="advertisement.date" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_author">Author</label>
+            <input type="text" class="form-control" name="author" id="field_author"
+                [(ngModel)]="advertisement.author" required min="0" max="150"/>
+            <div [hidden]="!(editForm.controls.author?.dirty && editForm.controls.author?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.author?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.author?.errors?.min">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.author?.errors?.max">
+                    This field cannot be more than 150.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_category">Category</label>
+            <select class="form-control" name="category" [(ngModel)]="advertisement.category" id="field_category" >
+                <option value="WYNIKI">WYNIKI</option>
+                <option value="KONKURS">KONKURS</option>
+                <option value="KOLOKWIUM">KOLOKWIUM</option>
+                <option value="WYDARZENIE">WYDARZENIE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_college">College</label>
+            <select class="form-control" name="college" [(ngModel)]="advertisement.college" id="field_college"  required>
+                <option value="KOSZALIN">KOSZALIN</option>
+                <option value="SZCZECIN">SZCZECIN</option>
+                <option value="WARSZAWA">WARSZAWA</option>
+            </select>
+            <div [hidden]="!(editForm.controls.college?.dirty && editForm.controls.college?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.college?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_department">Department</label>
+            <select class="form-control" name="department" [(ngModel)]="advertisement.department" id="field_department" >
+                <option value="WNE">WNE</option>
+                <option value="WEII">WEII</option>
+                <option value="WM">WM</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="advertisement.email" required min="0" max="150"/>
+            <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.email?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.email?.errors?.min">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.email?.errors?.max">
+                    This field cannot be more than 150.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_link">Link</label>
+            <input type="text" class="form-control" name="link" id="field_link"
+                [(ngModel)]="advertisement.link" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_picture">Picture</label>
+            <div>
+                <div *ngIf="advertisement.picture" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(advertisement.pictureContentType, advertisement.picture)">open</a><br>
+                    <span class="pull-left">{{advertisement.pictureContentType}}, {{byteSize(advertisement.picture)}}</span>
+                    <button type="button" (click)="advertisement.picture=null;advertisement.pictureContentType=null;"
+                            class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_picture" (change)="setFileData($event, advertisement, 'picture', false)"/>
+            </div>
+            <input type="hidden" class="form-control" name="picture" id="field_picture"
+                [(ngModel)]="advertisement.picture" />
+            <input type="hidden" class="form-control" name="pictureContentType" id="field_pictureContentType"
+                [(ngModel)]="advertisement.pictureContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button id="save" type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+
+entity Advertisement {
+	title String
+    description String
+    date String
+    author String
+    category ECategory
+    college ECollege
+	link String
+    picture Blob
+}
+    
+enum ECollege {
+   KOSZALIN, SZCZECIN, WARSZAWA
+}
+enum ECategory{
+	WYNIKI, KONKURS, KOLOKWIUM, WYDARZENIE
+}
+
+
+
+

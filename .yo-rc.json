@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.cysewska.advertisement"
+    },
+    "jhipsterVersion": "4.13.3",
+    "baseName": "AdvertisementApp",
+    "packageName": "com.cysewska.advertisement",
+    "packageFolder": "com/cysewska/advertisement",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSocialSignIn": false,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "8c784389ec21b1c4a17ca6b041f7ff5758419314",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "yarn",
+    "applicationType": "monolith",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false
+  }
+}
